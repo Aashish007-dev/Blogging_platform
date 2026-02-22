@@ -8,7 +8,7 @@ export const adminLogin = async (req, res) => {
         if(email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWROD) {
             return res.status(401).json({success: false, message: "Invalid credentials"});
         }
-        const token = jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: "1h"});
+        const token = jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: "1d"});
         res.status(200).json({success: true, message: "Login successful", token});
     } catch (error) {
         console.log(error);
